@@ -6,4 +6,5 @@
 <app-task
   [subject]="selectedTask.subject"
   [state]="selectedTask.state"
+  (stateChange)="onStateChange($event)"
 ></app-task>

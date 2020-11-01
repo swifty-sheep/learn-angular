@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, EventEmitter } from '@angular/core';
 import { TaskState } from "../../enum/task-state.enum";
 import { Task } from "../../model/task";
 
@@ -7,19 +7,11 @@ import { Task } from "../../model/task";
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent implements OnInit, OnChanges {
 
   @Input() subject: string;
-
-  private _state: TaskState;
-  @Input()
-  set state(state: TaskState) {
-    this._state = state;
-    this.stateDesc = this.getStateDesc();
-  }
-  get state(): TaskState {
-    return this._state;
-  }
+  @Input() state: TaskState;
+  @Output() stateChange = new EventEmitter<TaskState>();
 
   stateDesc: string;
 
@@ -29,8 +21,12 @@ export class TaskComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  ngOnChanges(): void {
+    this.stateDesc = this.getStateDesc();
+  }
+
   getStateDesc(): string {
-    switch (this._state) {
+    switch (this.state) {
       case TaskState.None:
         return "未完成";
       case TaskState.Doing:
@@ -41,11 +37,11 @@ export class TaskComponent implements OnInit {
   }
 
   onSetTaskState(state: TaskState): void {
-    this._state = state;
+    this.stateChange.emit(state);
   }
 
   getStateColor(): string {
-    switch (this._state) {
+    switch (this.state) {
       case TaskState.Doing:
         return "green";
       case TaskState.Finish:
@@ -54,7 +50,7 @@ export class TaskComponent implements OnInit {
   }
 
   getStateStyle(): string {
-    switch (this._state) {
+    switch (this.state) {
       case TaskState.Doing:
         return "color: green";
       case TaskState.Finish:

@@ -8,6 +8,7 @@ import { Task } from "../../model/task";
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit, OnChanges {
+  stateClass: { [key: string]: boolean };
 
   @Input() subject: string;
   @Input() state: TaskState;
@@ -22,6 +23,10 @@ export class TaskComponent implements OnInit, OnChanges {
   ngOnInit(): void { }
 
   ngOnChanges(): void {
+    this.stateClass = {
+      doing: this.state === TaskState.Doing,
+      finish: this.state === TaskState.Finish,
+    };
     this.stateDesc = this.getStateDesc();
   }
 

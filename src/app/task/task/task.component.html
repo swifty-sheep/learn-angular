@@ -6,9 +6,7 @@
                 編輯
             </button>
         </span>
-        <span [class.doing]="state === TaskState.Doing" [class.finish]="state === TaskState.Finish">
-            {{ stateDesc }}
-        </span>
+        <span [appTaskStateColor]="state">{{ stateDesc }}</span>
 
     </div>
 

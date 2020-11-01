@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaskComponent } from './task/task/task.component';
+import { TaskStateColorDirective } from './task/task-state-color.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TaskComponent
+    TaskComponent,
+    TaskStateColorDirective
   ],
   imports: [
     BrowserModule,

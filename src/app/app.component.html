@@ -5,6 +5,5 @@
 </div>
 <app-task
   [subject]="selectedTask.subject"
-  [state]="selectedTask.state"
-  (stateChange)="onStateChange($event)"
+  [(state)]="selectedTask.state"
 ></app-task>

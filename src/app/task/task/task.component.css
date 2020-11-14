@@ -30,4 +30,9 @@ div.card {
   span.finish {
     color: blue;
   }
+
+  :host(.odd) div.card {
+    background-color: cornsilk;
+  }
+
   

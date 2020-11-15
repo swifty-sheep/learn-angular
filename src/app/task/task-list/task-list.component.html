@@ -1,6 +1,16 @@
-<app-task
-  *ngFor="let task of tasks; let i = index"
-  [class.odd]="i % 2 === 1"
-  [subject]="task.subject"
-  [(state)]="task.state"
-></app-task>
+<ng-container
+  *ngIf="tasks.length === 0; then dataEmpty; else list"
+></ng-container>
+
+<ng-template #dataEmpty>
+  <div class="data-empty">無待辦事項</div>
+</ng-template>
+
+<ng-template #list>
+  <app-task
+    *ngFor="let task of tasks; let odd = odd"
+    [class.odd]="odd"
+    [subject]="task.subject"
+    [(state)]="task.state"
+  ></app-task>
+</ng-template>

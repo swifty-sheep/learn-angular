@@ -5,4 +5,11 @@ export class Task {
     public subject: string,
     public state: TaskState = TaskState.None
   ) {}
+
+  level?: "XS" | "S" | "M" | "L" | "XL";
+
+  expectDate?: Date;
+
+  finishedDate?: Date;
+  
 }
